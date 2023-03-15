@@ -1,33 +1,38 @@
 package com.futurex.course.CourseApp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigInteger;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Course {
     @Id
-    private String courseid;
-    private String courseName;
+    private BigInteger courseid;
+    private String coursename;
     private String author;
 
     public Course() {
 
     }
 
-    public String getCourseid() {
+    public BigInteger getCourseid() {
         return courseid;
     }
 
-    public void setCourseid(String courseid) {
+    public void setCourseid(BigInteger courseid) {
         this.courseid = courseid;
     }
 
     public String getCourseName() {
-        return courseName;
+        return coursename;
     }
 
     public void setCourseName(String courseName) {
-        this.courseName = courseName;
+        this.coursename = courseName;
     }
 
     public String getAuthor() {

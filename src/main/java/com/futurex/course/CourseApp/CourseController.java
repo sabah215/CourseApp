@@ -1,9 +1,9 @@
 package com.futurex.course.CourseApp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +13,21 @@ public class CourseController {
     private CourseRepository courseRepository;
     @RequestMapping("/courses")
     public List<Course> getCourses(){
+
         return courseRepository.findAll();
+
+    }
+    @RequestMapping("/{id}")
+    public Course CourseGetSpecificCourse(@PathVariable("id") BigInteger id){
+        return courseRepository.getOne(id);
+    }
+
+    @RequestMapping(method= RequestMethod.POST, value="/courses")
+    public void save(@RequestBody Course course){
+        courseRepository.save(course);
+    }
+    @RequestMapping(method = RequestMethod.DELETE, value="{id}")
+    public void delete(@PathVariable BigInteger id){
+        courseRepository.deleteById(id);
     }
 }
